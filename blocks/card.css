@@ -15,7 +15,7 @@
     list-style: none;
     border-radius: 10px;
   }
-  .card__list{
+  .cards__list{
     display: grid;
     justify-content: center;
     grid-template-columns: repeat(auto-fit,282px);
