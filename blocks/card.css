@@ -1,10 +1,4 @@
 .cards{
-  font-family: "Inter", sans-serif;
-  font-style: normal;
-  font-weight: 900;
-  font-size: 24px;
-  line-height: 29px;
-  
   margin-top: 40px;
 }
 .cards__list{
@@ -39,9 +33,16 @@
     border-radius: 10px;
     border-top-right-radius: 0;
     border-top-left-radius: 0;
+  }
+  .card__title{
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
+    font-family: "Inter", sans-serif;
+    font-style: normal;
+    font-weight: 900;
+    font-size: 24px;
+    line-height: 29px;
   }
   .card__like-button{
     background: transparent url(../images/heart-icon.svg) center no-repeat;
