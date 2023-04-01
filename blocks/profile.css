@@ -50,3 +50,23 @@
     background-position: center;
     margin-right: 24px;
   }
+  @media screen and (max-width:320px) {
+    .profile{
+      flex-direction: column;
+    }
+    .profile__info{
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      width: 100%;
+    }
+    .profile__description{
+      width: 100%;
+      text-align: center;
+    }
+    .profile__add-button{
+      margin: 0;
+      width: 100%;
+    }
+    
+  }
