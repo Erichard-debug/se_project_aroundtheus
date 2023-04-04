@@ -17,3 +17,11 @@
     margin: 0;
     padding: 0;
   }
+  @media screen and (max-width: 320px) {
+    .cards {
+      margin: 0;
+    }
+    .cards__list {
+      padding-top: 36px;
+    }
+  }

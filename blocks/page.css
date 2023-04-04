@@ -13,7 +13,7 @@
       flex-direction:column;
       min-height: 100vh;
   }
-  @media screen and(max-width: 880px) {
+  @media screen and(max-width: 880px) and (min-width:1100px) {
     .page__section{
       margin:0 200px;
       max-width: calc(100% - 40px);
@@ -21,10 +21,10 @@
     
   }
   
-  @media screen and(max-width: 1280px) {
-    .page__section{
-      margin:0 20px;
-      max-width: calc(100% - 40px);
+  @media screen and(min-width: 325px) {
+    .page{
+      padding-left: 20px;
+      padding-right: 20px;
     }
     
   }
