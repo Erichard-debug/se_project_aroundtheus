@@ -32,12 +32,14 @@
     font-weight: 900;
     font-size: 24px;
     line-height: 29px;
+    margin: 0;
   }
   .card__like-button{
     background: transparent url(../images/heart-icon.svg) center no-repeat;
     width: 21px;
     height: 18px;
     border-style: none;
+    cursor: pointer;
   }
   .card__like-button:hover {
     opacity: 0.5;

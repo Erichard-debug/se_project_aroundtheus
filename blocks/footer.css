@@ -1,21 +1,16 @@
-.footer__copyright{
-  position: absolute;
-  width: 318px;
-  height: 18px;
-  left: 200px;
-  top: 1139px;
-  font-family: "Inter",sans-serif;
-  font-style: normal;
+.footer__copyright {
+  color: #545454;
+  font-family: "Inter", sans-serif;
   font-weight: 400;
   font-size: 18px;
-  line-height: 1.2;
-  color: #545454;
+  line-height: 1.21;
+  margin-bottom: 60px;
+  margin-top: 67px;
 }
 @media screen and (max-width: 320px) {
   .footer__copyright {
     padding-left: 19px;
     font-size: 14px;
-    line-height: 1.2;
     padding-top: 48px;
     padding-bottom: 36px;
     margin: 0;
