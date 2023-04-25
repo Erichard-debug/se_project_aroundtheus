@@ -64,7 +64,7 @@
 .modal__form {
   border-style: border-box;
   display: block;
-  width: 358px;
+  max-width: 358px;
 }
 .modal__button {
   width: 100%;
@@ -92,8 +92,9 @@
     font-size: 14px;
     padding-top: 48px;
     padding-bottom: 36px;
-    margin: 0 auto;
-    width: 282px;
+    margin: 120px auto;
+    max-width: 282px;
+    max-height: 322px;
     height: inherit;
     box-sizing: border-box;
   }
