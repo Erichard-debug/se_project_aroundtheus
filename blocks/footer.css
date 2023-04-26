@@ -7,6 +7,14 @@
   margin-bottom: 60px;
   margin-top: 67px;
 }
+@media screen and(max-width:880px) {
+  .footer__copyright {
+    padding-left: 100px;
+    padding-top: 45px;
+    padding-bottom: 35px;
+    margin: 0 auto;
+  }
+}
 @media screen and (max-width: 320px) {
   .footer__copyright {
     padding-left: 19px;

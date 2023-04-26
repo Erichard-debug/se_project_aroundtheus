@@ -64,7 +64,7 @@
 .modal__form {
   border-style: border-box;
   display: block;
-  min-width: 358px;
+  min-width: 250px;
 }
 .modal__button {
   width: 100%;
@@ -86,7 +86,8 @@
   opacity: 0.5;
   transition: 0.2s ease-in-out;
 }
-@media screen and (max-width: 320px) {
+
+@media screen and (max-width: 500px) {
   .modal__container {
     padding-left: 19px;
     font-size: 14px;
