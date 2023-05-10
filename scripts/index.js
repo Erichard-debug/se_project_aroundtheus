@@ -77,6 +77,7 @@ function getCardElement(cardData) {
   });
   cardImage.addEventListener("click", () => {
     previewImageModal.src = cardData.link;
+    previewImageModal.alt = cardData.name;
     previewDescriptionModal.textContent = cardData.name;
     openModal(previewModal);
   });
