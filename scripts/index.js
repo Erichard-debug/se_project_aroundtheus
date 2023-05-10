@@ -34,10 +34,10 @@ const profileCloseButton = profileEditModal.querySelector(
   "#profile-close-button"
 );
 const addCardprofileCloseButton = addCardModal.querySelector(
-  "#profile-close-button"
+  "#add-card-close-button"
 );
 const previewModalCloseButton = previewModal.querySelector(
-  "#profile-close-button"
+  "#preview-close-button"
 );
 const profileTitle = document.querySelector(".profile__title");
 const profileDescription = document.querySelector(".profile__description");
