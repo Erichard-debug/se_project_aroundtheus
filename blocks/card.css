@@ -49,3 +49,17 @@
   transition: 0.2s ease-in-out;
   opacity: 0.5;
 }
+.card__delete-button {
+  background: transparent url(../images/Trash-icon.svg) center no-repeat;
+  position: relative;
+  width: 21px;
+  height: 18px;
+  top: 25px;
+  right: -250px;
+  border: none;
+  cursor: pointer;
+}
+.card__delete-button:hover {
+  transition: 0.2s ease-in-out;
+  opacity: 0.5;
+}

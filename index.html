@@ -98,8 +98,18 @@
         </form>
       </div>
     </div>
+    <!--Preview image modal-->
+    <div class="modal" id="preview-modal">
+      <div class="modal__preview-image-container">
+        <button class="modal__close" id="profile-close-button"></button>
+        <img class="modal__preview-image" src="" />
+
+        <h2 class="modal__preview-description"></h2>
+      </div>
+    </div>
     <template id="card-template">
       <li class="card">
+        <button class="card__delete-button"></button>
         <img src="" alt="" class="card__image" />
         <div class="card__description">
           <h2 class="card__title"></h2>
