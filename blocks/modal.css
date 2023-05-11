@@ -70,7 +70,7 @@
 .modal__form {
   border-style: border-box;
   display: block;
-  min-width: 250px;
+  min-width: 358px;
 }
 .modal__button {
   width: 100%;
@@ -125,11 +125,9 @@
     right: 0;
     top: -45px;
   }
-  .modal__button {
-    width: 100%;
-  }
+
   .modal__form {
-    max-width: 358px;
+    max-width: 282px;
     min-width: 150px;
   }
   .modal__preview-image {
