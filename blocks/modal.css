@@ -67,6 +67,13 @@
   width: 100%;
   box-sizing: border-box;
 }
+.modal__input_type_error {
+  margin-bottom: 0px;
+}
+
+.modal__input_type_error:last-of-type {
+  margin-bottom: 0px;
+}
 .modal__form {
   border-style: border-box;
   display: block;
@@ -109,6 +116,34 @@
   text-align: left;
   color: #fff;
 }
+
+.modal__error_visible {
+  font-family: "Inter", Arial, sans-serif;
+  font-style: normal;
+  font-size: 12px;
+  font-weight: 400;
+  color: #ff0000;
+  margin-left: 0;
+  top: calc(100% + 5px);
+  transition: opacity 0.3s ease;
+  padding-bottom: 13px;
+  max-width: 164px;
+  border: none;
+  display: flex;
+}
+
+.modal__error:first-of-type {
+  padding-top: 5px;
+}
+
+.modal__error:last-of-type {
+  padding-top: 5px;
+}
+
+.modal__input_type_error {
+  border-bottom: 1px solid #ff0000;
+}
+
 @media screen and (max-width: 500px) {
   .modal__container {
     padding-left: 19px;

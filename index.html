@@ -51,23 +51,32 @@
       <div class="modal__container">
         <button class="modal__close" id="profile-close-button"></button>
         <h2 class="modal__heading">Edit Profile</h2>
-        <form class="modal__form">
+        <form class="modal__form" novalidate>
           <input
             type="text"
             name="title"
             id="profile-title-input"
             class="modal__input"
             placeholder="Name"
+            minlength="2"
+            maxlength="40"
             required
           />
+          <span class="modal__error" id="profile-title-input-error"></span>
           <input
             type="text"
             name="description"
             id="profile-description-input"
             class="modal__input"
             placeholder="Description"
+            minlength="2"
+            maxlength="200"
             required
           />
+          <span
+            class="modal__error"
+            id="profile-description-input-error"
+          ></span>
           <button type="submit" class="modal__button">Save</button>
         </form>
       </div>
@@ -77,15 +86,18 @@
       <div class="modal__container">
         <button class="modal__close" id="add-card-close-button"></button>
         <h2 class="modal__heading">New Place</h2>
-        <form class="modal__form">
+        <form class="modal__form" novalidate>
           <input
             type="text"
             name="title"
             id="add-card-title-input"
             class="modal__input modal__input_type_title"
             placeholder="Title"
+            minlength="1"
+            maxlength="30"
             required
           />
+          <span class="modal__error" id="add-card-title-input-error"></span>
           <input
             type="url"
             name="description"
@@ -94,6 +106,7 @@
             placeholder="Image URL"
             required
           />
+          <span class="modal__error" id="card-description-input-error"></span>
           <button type="submit" class="modal__button">Save</button>
         </form>
       </div>
@@ -119,5 +132,6 @@
     </template>
 
     <script src="./scripts/index.js" defer></script>
+    <script src="./scripts/validation.js" defer></script>
   </body>
 </html>
