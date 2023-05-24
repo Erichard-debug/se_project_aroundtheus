@@ -120,7 +120,10 @@ function handleAddCardFormSubmit(e) {
   profileAddCardForm.reset();
 }
 function mouseDown(e, modal) {
-  if (e.target.classList.contains("modal")) {
+  if (
+    e.target.classList.contains("modal__close") ||
+    e.target.classList.contains("modal")
+  ) {
     closePopup(modal);
   }
 }
