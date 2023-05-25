@@ -64,7 +64,9 @@ const previewDescriptionModal = previewModal.querySelector(
 
 /*Functions*/
 function openModal(modal) {
-  modal.addEventListener("keydown", (e) => closeByEscapeKeyHandler(e, modal));
+  document.addEventListener("keydown", (e) =>
+    closeByEscapeKeyHandler(e, modal)
+  );
   modal.addEventListener("mousedown", (e) => closeByMouseDown(e, modal));
   modal.classList.add("modal_opened");
 }
