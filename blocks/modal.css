@@ -122,13 +122,14 @@
   font-family: "Inter", Arial, sans-serif;
   font-style: normal;
   font-size: 12px;
+  line-height: 15px;
   font-weight: 400;
   color: #ff0000;
   margin-left: 0;
   top: calc(100% + 5px);
   transition: opacity 0.3s ease;
   padding-bottom: 13px;
-  max-width: 164px;
+  width: 100%;
   border: none;
   display: flex;
 }

@@ -47,6 +47,9 @@ const profileDescriptionInput = document.querySelector(
 );
 const profileEditForm = profileEditModal.querySelector(".modal__form");
 const profileAddCardForm = addCardModal.querySelector(".modal__form");
+const newCardSubmitButton = profileAddCardForm.querySelector(
+  config.submitButtonSelector
+);
 const cardsWrap = document.querySelector(".cards__list");
 const cardTemplate =
   document.querySelector("#card-template").content.firstElementChild;
@@ -60,8 +63,20 @@ const previewDescriptionModal = previewModal.querySelector(
 );
 
 /*Functions*/
+function openModal(modal) {
+  document.addEventListener("keydown", (e) =>
+    closeByEscapeKeyHandler(e, modal)
+  );
+  document.addEventListener("mousedown", (e) => closeByMouseDown(e, modal));
+  modal.classList.add("modal_opened");
+}
+
 function closePopup(modal) {
-  document.removeEventListener("keydown", (e) => escapeKeyHandler(e, modal));
+  document.removeEventListener("keydown", (e) =>
+    closeByEscapeKeyHandler(e, modal)
+  );
+  document.removeEventListener("mousedown", (e) => closeByMouseDown(e, modal));
+
   modal.classList.remove("modal_opened");
 }
 
@@ -92,11 +107,6 @@ function getCardElement(cardData) {
   return cardElement;
 }
 
-function openModal(modal) {
-  document.addEventListener("keydown", (e) => escapeKeyHandler(e, modal));
-  document.addEventListener("mousedown", (e) => mouseDown(e, modal));
-  modal.classList.add("modal_opened");
-}
 function renderCard(cardData) {
   const cardElement = getCardElement(cardData);
   cardsWrap.prepend(cardElement);
@@ -116,10 +126,17 @@ function handleAddCardFormSubmit(e) {
   const name = cardTitleInput.value;
   const link = cardUrlInput.value;
   renderCard({ name, link }, cardsWrap);
+  console.log(newCardSubmitButton);
+
   closePopup(addCardModal);
   profileAddCardForm.reset();
+  toggleButtonState(
+    [cardTitleInput, cardUrlInput],
+    newCardSubmitButton,
+    config
+  );
 }
-function mouseDown(e, modal) {
+function closeByMouseDown(e, modal) {
   if (
     e.target.classList.contains("modal__close") ||
     e.target.classList.contains("modal")
@@ -127,7 +144,7 @@ function mouseDown(e, modal) {
     closePopup(modal);
   }
 }
-function escapeKeyHandler(e, modal) {
+function closeByEscapeKeyHandler(e, modal) {
   if (e.key === "Escape") {
     closePopup(modal);
   }
