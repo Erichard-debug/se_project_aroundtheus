@@ -64,19 +64,16 @@ const previewDescriptionModal = previewModal.querySelector(
 
 /*Functions*/
 function openModal(modal) {
-  document.addEventListener("keydown", (e) =>
-    closeByEscapeKeyHandler(e, modal)
-  );
+  document.addEventListener("keydown", closeByEscapeKeyHandler);
   modal.addEventListener("mousedown", (e) => closeByMouseDown(e, modal));
+  // document.addEventListener("mousedown", handleCloseByMouse);
   modal.classList.add("modal_opened");
 }
 
 function closePopup(modal) {
-  modal.removeEventListener("keydown", (e) =>
-    closeByEscapeKeyHandler(e, modal)
-  );
+  document.removeEventListener("keydown", closeByEscapeKeyHandler);
   modal.removeEventListener("mousedown", (e) => closeByMouseDown(e, modal));
-
+  // document.removeEventListener("mousedown", handleCloseByMouse);
   modal.classList.remove("modal_opened");
 }
 
@@ -144,9 +141,13 @@ function closeByMouseDown(e, modal) {
     closePopup(modal);
   }
 }
-function closeByEscapeKeyHandler(e, modal) {
+// function handleCloseByMouse(e) {
+//   closeByMouseDown(e, modal);
+// }
+function closeByEscapeKeyHandler(e) {
   if (e.key === "Escape") {
-    closePopup(modal);
+    const openPopup = document.querySelector(".modal_opened");
+    closePopup(openPopup);
   }
 }
 
