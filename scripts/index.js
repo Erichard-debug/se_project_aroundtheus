@@ -65,14 +65,12 @@ const previewDescriptionModal = previewModal.querySelector(
 /*Functions*/
 function openModal(modal) {
   document.addEventListener("keydown", closeByEscapeKeyHandler);
-  // modal.addEventListener("mousedown", (e) => closeByMouseDown(e, modal));
   modal.addEventListener("mousedown", closeByMouseDown);
   modal.classList.add("modal_opened");
 }
 
 function closePopup(modal) {
   document.removeEventListener("keydown", closeByEscapeKeyHandler);
-  // modal.removeEventListener("mousedown", (e) => closeByMouseDown(e, modal));
   modal.removeEventListener("mousedown", closeByMouseDown);
   modal.classList.remove("modal_opened");
 }
