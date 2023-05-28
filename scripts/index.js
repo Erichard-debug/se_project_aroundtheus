@@ -65,15 +65,15 @@ const previewDescriptionModal = previewModal.querySelector(
 /*Functions*/
 function openModal(modal) {
   document.addEventListener("keydown", closeByEscapeKeyHandler);
-  modal.addEventListener("mousedown", (e) => closeByMouseDown(e, modal));
-  // document.addEventListener("mousedown", handleCloseByMouse);
+  // modal.addEventListener("mousedown", (e) => closeByMouseDown(e, modal));
+  modal.addEventListener("mousedown", closeByMouseDown);
   modal.classList.add("modal_opened");
 }
 
 function closePopup(modal) {
   document.removeEventListener("keydown", closeByEscapeKeyHandler);
-  modal.removeEventListener("mousedown", (e) => closeByMouseDown(e, modal));
-  // document.removeEventListener("mousedown", handleCloseByMouse);
+  // modal.removeEventListener("mousedown", (e) => closeByMouseDown(e, modal));
+  modal.removeEventListener("mousedown", closeByMouseDown);
   modal.classList.remove("modal_opened");
 }
 
@@ -133,17 +133,16 @@ function handleAddCardFormSubmit(e) {
     config
   );
 }
-function closeByMouseDown(e, modal) {
+
+function closeByMouseDown(event) {
   if (
-    e.target.classList.contains("modal__close") ||
-    e.target.classList.contains("modal")
+    event.target.classList.contains("modal__close") ||
+    event.target.classList.contains("modal")
   ) {
-    closePopup(modal);
+    closePopup(event.target.closest(".modal"));
   }
 }
-// function handleCloseByMouse(e) {
-//   closeByMouseDown(e, modal);
-// }
+
 function closeByEscapeKeyHandler(e) {
   if (e.key === "Escape") {
     const openPopup = document.querySelector(".modal_opened");
