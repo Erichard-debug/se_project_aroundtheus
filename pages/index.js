@@ -1,3 +1,6 @@
+// import Card from "../components/Card.js";
+import FormValidator from "../components/FormValidator.js";
+
 const initialCards = [
   {
     name: "Yosemite Valley",
@@ -24,6 +27,22 @@ const initialCards = [
     link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/lago.jpg",
   },
 ];
+
+// const card = new Card(initialCards, "#card-template");
+// card.getView();
+
+const formValidatorConfig = {
+  inputSelector: ".modal__input",
+  submitButtonSelector: ".modal__button",
+  inactiveButtonClass: "modal__button_disabled",
+  inputErrorClass: "modal__input_type_error",
+  errorClass: "modal__error_visible",
+};
+
+const addFormValidator = new FormValidator(formValidatorConfig);
+console.log(FormValidator);
+addFormValidator.enableValidation();
+
 /*Elements*/
 const profileEditButton = document.querySelector("#profile-edit-button");
 const profileEditModal = document.querySelector("#profile-edit-modal");
@@ -79,12 +98,12 @@ function getCardElement(cardData) {
   const cardElement = cardTemplate.cloneNode(true);
   const cardImage = cardElement.querySelector(".card__image");
   const cardTitle = cardElement.querySelector(".card__title");
-  const likeButton = cardElement.querySelector(".card__like-button");
-  const deleteButton = cardElement.querySelector(".card__delete-button");
+  // const likeButton = cardElement.querySelector(".card__like-button");
+  // const deleteButton = cardElement.querySelector(".card__delete-button");
 
-  deleteButton.addEventListener("click", () => {
-    cardElement.remove();
-  });
+  // deleteButton.addEventListener("click", () => {
+  //   cardElement.remove();
+  // });
   cardImage.addEventListener("click", () => {
     previewImageModal.src = cardData.link;
     previewImageModal.alt = cardData.name;
@@ -92,9 +111,9 @@ function getCardElement(cardData) {
     openModal(previewModal);
   });
 
-  likeButton.addEventListener("click", () => {
-    likeButton.classList.toggle("card__like-button_active");
-  });
+  // likeButton.addEventListener("click", () => {
+  //   likeButton.classList.toggle("card__like-button_active");
+  // });
 
   cardImage.src = cardData.link;
   cardImage.alt = cardData.name;
