@@ -6,7 +6,7 @@ import {
 } from "../utils/utils.js";
 class Card {
   constructor(data, templateSelector) {
-    this._description = data.name;
+    this._name = data.name;
     this._link = data.link;
     this._templateSelector = templateSelector;
   }
@@ -18,13 +18,13 @@ class Card {
       .cloneNode(true);
   }
 
-  _handleCardImage(e) {
+  _handleCardImage = (e) => {
     previewImageModal.src = this._link;
     previewImageModal.alt = this._name;
     previewDescriptionModal.textContent = this._name;
     openModal(previewModal);
-    document.querySelector(".modal__image").src = e.target.src;
-  }
+    // document.querySelector(".modal__image").src = e.target.src;
+  };
 
   _handleDeleteButton() {
     this._cardElement.remove();
@@ -48,10 +48,9 @@ class Card {
   getCardElement() {
     this._cardElement = this._getTemplate();
     this._setEventListeners();
-    this._cardElement.querySelector(".card__title").textContent =
-      this._description;
+    this._cardElement.querySelector(".card__title").textContent = this._name;
     this._cardElement.querySelector(".card__image").src = this._link;
-    this._cardElement.querySelector(".card__image").alt = this._description;
+    this._cardElement.querySelector(".card__image").alt = this._name;
 
     return this._cardElement;
   }

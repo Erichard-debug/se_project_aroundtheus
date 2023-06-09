@@ -26,7 +26,7 @@ class FormValidator {
     if (!inputEl.validity.valid) {
       return showInputError(this._formEl, inputEl, options);
     }
-    hideInputError(this._formEl, inputEl, options);
+    _hideInputError(this._formEl, inputEl, options);
   }
 
   _hasInvalidInput(inputList) {
@@ -50,8 +50,9 @@ class FormValidator {
     this._toggleButtonState(inputEls, submitButton);
     inputEls.forEach((inputEl) => {
       inputEl.addEventListener("input", (e) => {
-        checkInputValidity(this._formEl, inputEl, options);
-        toggleButtonState(inputEls, submitButton, options);
+        console.log(this._checkInputValidity);
+        this._checkInputValidity(this._formEl, inputEl);
+        _toggleButtonState(inputEls, submitButton);
       });
     });
   }

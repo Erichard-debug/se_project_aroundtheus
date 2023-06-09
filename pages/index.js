@@ -65,44 +65,6 @@ const cardTitleInput = profileAddCardForm.querySelector(
 const cardUrlInput = profileAddCardForm.querySelector(".modal__input_type_url");
 
 /*Functions*/
-// function openModal(modal) {
-//   document.addEventListener("keydown", closeByEscapeKeyHandler);
-//   modal.addEventListener("mousedown", closeByMouseDown);
-//   modal.classList.add("modal_opened");
-// }
-
-// function closePopup(modal) {
-//   document.removeEventListener("keydown", closeByEscapeKeyHandler);
-//   modal.removeEventListener("mousedown", closeByMouseDown);
-//   modal.classList.remove("modal_opened");
-// }
-
-// function getCardElement(cardData) {
-//   const cardElement = cardTemplate.cloneNode(true);
-//   const cardImage = cardElement.querySelector(".card__image");
-//   const cardTitle = cardElement.querySelector(".card__title");
-//   const likeButton = cardElement.querySelector(".card__like-button");
-//   const deleteButton = cardElement.querySelector(".card__delete-button");
-
-// deleteButton.addEventListener("click", () => {
-//   cardElement.remove();
-// });
-// cardImage.addEventListener("click", () => {
-//   previewImageModal.src = cardData.link;
-//   previewImageModal.alt = cardData.name;
-//   previewDescriptionModal.textContent = cardData.name;
-//   openModal(previewModal);
-// });
-
-// likeButton.addEventListener("click", () => {
-//   likeButton.classList.toggle("card__like-button_active");
-// });
-
-//   cardImage.src = cardData.link;
-//   cardImage.alt = cardData.name;
-//   cardTitle.textContent = cardData.name;
-//   return cardElement;
-// }
 
 function renderCard(cardData) {
   const card = new Card(cardData, "#card-template");
