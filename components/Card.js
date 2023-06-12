@@ -1,9 +1,11 @@
+import { openModal } from "../utils/utils.js";
+
 import {
-  openModal,
   previewDescriptionModal,
   previewImageModal,
   previewModal,
-} from "../utils/utils.js";
+} from "../pages/index.js";
+
 class Card {
   constructor(data, templateSelector) {
     this._name = data.name;
@@ -28,22 +30,25 @@ class Card {
 
   _handleDeleteButton() {
     this._cardElement.remove();
+    this._cardElement = null;
   }
   _handleLikeButton() {
-    this._cardElement.classList.toggle("card__like-button_active");
+    this._cardElement
+      .querySelector(".card__like-button")
+      .classList.toggle("card__like-button_active");
   }
   _setEventListeners() {
     this._cardElement
       .querySelector(".card__image")
-      .addEventListener("click", this._handleCardImage);
+      .addEventListener("click", () => this._handleCardImage());
 
     this._cardElement
       .querySelector(".card__delete-button")
-      .addEventListener("click", this._handleDeleteButton);
+      .addEventListener("click", () => this._handleDeleteButton());
 
     this._cardElement
       .querySelector(".card__like-button")
-      .addEventListener("click", this._handleLikeButton);
+      .addEventListener("click", () => this._handleLikeButton());
   }
   getCardElement() {
     this._cardElement = this._getTemplate();

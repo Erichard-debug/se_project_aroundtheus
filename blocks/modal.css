@@ -95,6 +95,9 @@
   margin-top: 18px;
   border: none;
 }
+.modal__button:hover {
+  cursor: pointer;
+}
 .modal__button_disabled {
   cursor: pointer;
   opacity: 0.5;

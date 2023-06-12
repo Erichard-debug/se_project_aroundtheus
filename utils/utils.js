@@ -1,9 +1,3 @@
-const previewModal = document.querySelector("#preview-modal");
-const previewImageModal = previewModal.querySelector(".modal__preview-image");
-const previewDescriptionModal = previewModal.querySelector(
-  ".modal__preview-description"
-);
-
 function closeByEscapeKeyHandler(e) {
   if (e.key === "Escape") {
     closePopup(document.querySelector(".modal_opened"));
@@ -32,11 +26,4 @@ function closePopup(modal) {
   modal.classList.remove("modal_opened");
 }
 
-export {
-  closeByEscapeKeyHandler,
-  openModal,
-  closePopup,
-  previewDescriptionModal,
-  previewImageModal,
-  previewModal,
-};
+export { closeByEscapeKeyHandler, openModal, closePopup };

@@ -40,6 +40,13 @@ const card = new Card(initialCards, "#card-template");
 card.getCardElement();
 
 /*Elements*/
+export const previewModal = document.querySelector("#preview-modal");
+export const previewImageModal = previewModal.querySelector(
+  ".modal__preview-image"
+);
+export const previewDescriptionModal = previewModal.querySelector(
+  ".modal__preview-description"
+);
 const profileEditButton = document.querySelector("#profile-edit-button");
 const profileEditModal = document.querySelector("#profile-edit-modal");
 const addCardModal = document.querySelector("#add-form-modal");
@@ -69,7 +76,7 @@ const cardUrlInput = profileAddCardForm.querySelector(".modal__input_type_url");
 function renderCard(cardData) {
   const card = new Card(cardData, "#card-template");
   const cardElement = card.getCardElement();
-  card._setEventListeners();
+  // card._setEventListeners();
   cardsWrap.prepend(cardElement);
 }
 
@@ -87,15 +94,14 @@ function handleAddCardFormSubmit(e) {
   const name = cardTitleInput.value;
   const link = cardUrlInput.value;
   renderCard({ name, link }, cardsWrap);
-  console.log(newCardSubmitButton);
 
   closePopup(addCardModal);
   profileAddCardForm.reset();
-  toggleButtonState(
-    [cardTitleInput, cardUrlInput],
-    newCardSubmitButton,
-    config
-  );
+  // toggleButtonState(
+  //   [cardTitleInput, cardUrlInput],
+  //   // newCardSubmitButton,
+  //   config
+  // );
 }
 
 /*Event Listeners*/
