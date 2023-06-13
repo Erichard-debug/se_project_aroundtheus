@@ -94,11 +94,6 @@ function handleAddCardFormSubmit(e) {
 
   closePopup(addCardModal);
   profileAddCardForm.reset();
-  // toggleButtonState(
-  //   [cardTitleInput, cardUrlInput],
-  //   // newCardSubmitButton,
-  //   config
-  // );
 }
 
 /*Event Listeners*/
@@ -127,9 +122,10 @@ const addFormValidator = new FormValidator(
   profileAddCardForm
 );
 addFormValidator.enableValidation();
-
+addFormValidator.toggleButtonState();
 const editFormValidator = new FormValidator(
   formValidatorConfig,
   profileEditForm
 );
 editFormValidator.enableValidation();
+editFormValidator.toggleButtonState();
