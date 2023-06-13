@@ -36,9 +36,6 @@ const formValidatorConfig = {
   errorClass: "modal__error_visible",
 };
 
-const card = new Card(initialCards, "#card-template");
-card.getCardElement();
-
 /*Elements*/
 export const previewModal = document.querySelector("#preview-modal");
 export const previewImageModal = previewModal.querySelector(
