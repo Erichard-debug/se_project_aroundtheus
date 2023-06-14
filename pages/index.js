@@ -122,10 +122,9 @@ const addFormValidator = new FormValidator(
   profileAddCardForm
 );
 addFormValidator.enableValidation();
-addFormValidator.toggleButtonState();
+
 const editFormValidator = new FormValidator(
   formValidatorConfig,
   profileEditForm
 );
 editFormValidator.enableValidation();
-editFormValidator.toggleButtonState();
