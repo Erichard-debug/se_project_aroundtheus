@@ -1,5 +1,5 @@
-import { openModal } from "../utils/utils.js";
-
+// import { openModal } from "../utils/utils.js";
+import Popup from "./Popup.js";
 import {
   previewDescriptionModal,
   previewImageModal,
@@ -25,7 +25,6 @@ class Card {
     previewImageModal.alt = this._name;
     previewDescriptionModal.textContent = this._name;
     openModal(previewModal);
-    // document.querySelector(".modal__image").src = e.target.src;
   };
 
   _handleDeleteButton() {

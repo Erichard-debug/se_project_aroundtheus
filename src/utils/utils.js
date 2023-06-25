@@ -26,4 +26,4 @@ function closePopup(modal) {
   modal.classList.remove("modal_opened");
 }
 
-export { closeByEscapeKeyHandler, openModal, closePopup };
+// ...
