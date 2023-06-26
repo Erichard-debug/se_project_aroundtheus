@@ -38,19 +38,6 @@ const formValidatorConfig = {
   inputErrorClass: "modal__input_type_error",
   errorClass: "modal__error_visible",
 };
-// popup
-const editPopupForm = new PopupWithForm(profileEditForm);
-editPopupForm.setEventListeners();
-
-const addCardPopupForm = new PopupWithForm(profileAddCardForm);
-addCardPopupForm.setEventListeners();
-
-const previewImagePopup = new PopupWithImage(
-  previewImageModal,
-  previewDescriptionModal,
-  previewModal
-);
-previewImagePopup.setEventListeners();
 
 /*Elements*/
 export const previewModal = document.querySelector("#preview-modal");
@@ -80,6 +67,20 @@ const cardTitleInput = profileAddCardForm.querySelector(
   ".modal__input_type_title"
 );
 const cardUrlInput = profileAddCardForm.querySelector(".modal__input_type_url");
+
+// popup
+const editPopupForm = new PopupWithForm(profileEditForm);
+editPopupForm.setEventListeners();
+
+const addCardPopupForm = new PopupWithForm(profileAddCardForm);
+addCardPopupForm.setEventListeners();
+
+const previewImagePopup = new PopupWithImage(
+  previewImageModal,
+  previewDescriptionModal,
+  previewModal
+);
+previewImagePopup.setEventListeners();
 
 /*Functions*/
 
