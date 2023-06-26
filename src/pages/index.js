@@ -39,9 +39,11 @@ const formValidatorConfig = {
 };
 
 /*Elements*/
-const previewModal = document.querySelector("#preview-modal");
-const previewImageModal = previewModal.querySelector(".modal__preview-image");
-const previewDescriptionModal = previewModal.querySelector(
+export const previewModal = document.querySelector("#preview-modal");
+export const previewImageModal = previewModal.querySelector(
+  ".modal__preview-image"
+);
+export const previewDescriptionModal = previewModal.querySelector(
   ".modal__preview-description"
 );
 const profileEditButton = document.querySelector("#profile-edit-button");
@@ -71,12 +73,18 @@ editPopupForm.setEventListeners();
 const addCardPopupForm = new PopupWithForm(addCardModal);
 addCardPopupForm.setEventListeners();
 
-const previewImagePopup = new PopupWithImage(
-  previewImageModal,
-  previewDescriptionModal,
-  previewModal
-);
-previewImagePopup.setEventListeners();
+const card = new Card(handleCardImageClick);
+
+function handleCardImageClick({ name, link }) {
+  const previewImagePopup = new PopupWithImage(
+    // previewImageModal,
+    // previewDescriptionModal,
+    // previewModal,
+    card
+  );
+  previewImagePopup.setEventListeners();
+  // this function should run when you click on your card.  here is where you open your modal using PopupWithImage
+}
 
 // Image modal event
 previewModal.addEventListener("click", () => {

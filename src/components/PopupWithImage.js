@@ -15,9 +15,4 @@ export default class PopupWithImage extends Popup {
     this._previewImageElement.src = link;
     super.open();
   }
-
-  setEventListeners() {
-    super.setEventListeners();
-    this._popupElement.querySelector(".card__image");
-  }
 }

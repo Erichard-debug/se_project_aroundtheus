@@ -1,15 +1,15 @@
-// import { openModal } from "../utils/utils.js";
-// import {
-//   previewDescriptionModal,
-//   previewImageModal,
-//   previewModal,
-// } from "../pages/index.js";
+import {
+  previewDescriptionModal,
+  previewImageModal,
+  previewModal,
+} from "../pages/index.js";
 
 class Card {
-  constructor(data, templateSelector) {
+  constructor(data, templateSelector, handleCardImageClick) {
     this._name = data.name;
     this._link = data.link;
     this._templateSelector = templateSelector;
+    this._handleCardImageClick = handleCardImageClick;
   }
 
   _getTemplate() {
@@ -19,12 +19,12 @@ class Card {
       .cloneNode(true);
   }
 
-  // _handleCardImage = (e) => {
-  //   previewImageModal.src = this._link;
-  //   previewImageModal.alt = this._name;
-  //   previewDescriptionModal.textContent = this._name;
-  //   // openModal(previewModal);
-  // };
+  _handleCardImageClick = () => {
+    previewImageModal.src = this._link;
+    previewImageModal.alt = this._name;
+    previewDescriptionModal.textContent = this._name;
+    previewModal.open();
+  };
 
   _handleDeleteButton() {
     this._cardElement.remove();
@@ -36,9 +36,11 @@ class Card {
       .classList.toggle("card__like-button_active");
   }
   _setEventListeners() {
-    // this._cardElement
-    //   .querySelector(".card__image")
-    //   .addEventListener("click", () => this._handleCardImage());
+    this._cardElement
+      .querySelector(".card__image")
+      .addEventListener("click", () => {
+        this._handleCardImageClick({ name: this._name, link: this._link });
+      });
 
     this._cardElement
       .querySelector(".card__delete-button")
