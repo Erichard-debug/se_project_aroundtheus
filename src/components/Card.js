@@ -1,10 +1,9 @@
 // import { openModal } from "../utils/utils.js";
-import Popup from "./Popup.js";
-import {
-  previewDescriptionModal,
-  previewImageModal,
-  previewModal,
-} from "../pages/index.js";
+// import {
+//   previewDescriptionModal,
+//   previewImageModal,
+//   previewModal,
+// } from "../pages/index.js";
 
 class Card {
   constructor(data, templateSelector) {
@@ -20,12 +19,12 @@ class Card {
       .cloneNode(true);
   }
 
-  _handleCardImage = (e) => {
-    previewImageModal.src = this._link;
-    previewImageModal.alt = this._name;
-    previewDescriptionModal.textContent = this._name;
-    openModal(previewModal);
-  };
+  // _handleCardImage = (e) => {
+  //   previewImageModal.src = this._link;
+  //   previewImageModal.alt = this._name;
+  //   previewDescriptionModal.textContent = this._name;
+  //   // openModal(previewModal);
+  // };
 
   _handleDeleteButton() {
     this._cardElement.remove();
@@ -37,9 +36,9 @@ class Card {
       .classList.toggle("card__like-button_active");
   }
   _setEventListeners() {
-    this._cardElement
-      .querySelector(".card__image")
-      .addEventListener("click", () => this._handleCardImage());
+    // this._cardElement
+    //   .querySelector(".card__image")
+    //   .addEventListener("click", () => this._handleCardImage());
 
     this._cardElement
       .querySelector(".card__delete-button")
