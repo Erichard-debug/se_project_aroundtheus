@@ -3,6 +3,7 @@ import {
   previewImageModal,
   previewModal,
 } from "../pages/index.js";
+import PopupWithImage from "./PopupWithImage.js";
 
 class Card {
   constructor(data, templateSelector, handleCardImageClick) {
@@ -19,11 +20,14 @@ class Card {
       .cloneNode(true);
   }
 
-  _handleCardImageClick = () => {
+  _handleCardImage = () => {
     previewImageModal.src = this._link;
     previewImageModal.alt = this._name;
     previewDescriptionModal.textContent = this._name;
-    previewModal.open();
+    const openPreviewModal = new PopupWithImage("#preview-modal");
+
+    openPreviewModal.open({ name: this._name, link: this._link });
+    this._handleCardImageClick({ name: this._name, link: this._link });
   };
 
   _handleDeleteButton() {
@@ -39,7 +43,7 @@ class Card {
     this._cardElement
       .querySelector(".card__image")
       .addEventListener("click", () => {
-        this._handleCardImageClick({ name: this._name, link: this._link });
+        this._handleCardImage();
       });
 
     this._cardElement

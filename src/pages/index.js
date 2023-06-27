@@ -67,29 +67,19 @@ const cardTitleInput = profileAddCardForm.querySelector(
 const cardUrlInput = profileAddCardForm.querySelector(".modal__input_type_url");
 
 // popup
-const editPopupForm = new PopupWithForm(profileEditModal);
+const editPopupForm = new PopupWithForm("#profile-edit-modal");
 editPopupForm.setEventListeners();
 
-const addCardPopupForm = new PopupWithForm(addCardModal);
+const addCardPopupForm = new PopupWithForm("#add-form-modal");
 addCardPopupForm.setEventListeners();
 
-const card = new Card(handleCardImageClick);
+// Image modal event
 
 function handleCardImageClick({ name, link }) {
-  const previewImagePopup = new PopupWithImage(
-    // previewImageModal,
-    // previewDescriptionModal,
-    // previewModal,
-    card
-  );
+  const previewImagePopup = new PopupWithImage("#preview-modal");
   previewImagePopup.setEventListeners();
-  // this function should run when you click on your card.  here is where you open your modal using PopupWithImage
 }
 
-// Image modal event
-previewModal.addEventListener("click", () => {
-  previewImagePopup.open();
-});
 // /*Add New card event*/
 addNewCardButton.addEventListener("click", () => {
   addCardPopupForm.open();
@@ -104,7 +94,7 @@ profileEditButton.addEventListener("click", () => {
 /*Functions*/
 
 function renderCard(cardData) {
-  const card = new Card(cardData, "#card-template");
+  const card = new Card(cardData, "#card-template", handleCardImageClick);
   const cardElement = card.getCardElement();
   cardsWrap.prepend(cardElement);
 }
