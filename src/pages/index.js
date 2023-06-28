@@ -85,11 +85,18 @@ const section = new Section(
 section.renderItems();
 
 // Handlers//
+const userInfo = new UserInfo(
+  document.getElementById("profileTitle"),
+  document.getElementById("profileDescription")
+);
 
 function handleEditProfileSubmit(e) {
   e.preventDefault();
-  profileTitle.textContent = profileTitleInput.value;
-  profileDescription.textContent = profileDescriptionInput.value;
+  // profileTitle.textContent = profileTitleInput.value;
+  // profileDescription.textContent = profileDescriptionInput.value;
+  const nameInfo = profileTitleInput.value;
+  const jobInfo = profileDescriptionInput.value;
+  userInfo.setUserInfo(nameInfo, jobInfo);
   editPopupForm.close();
   profileEditForm.reset();
 }
