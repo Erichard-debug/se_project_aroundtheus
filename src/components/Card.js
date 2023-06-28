@@ -1,8 +1,4 @@
-import {
-  previewDescriptionModal,
-  previewImageModal,
-  previewModal,
-} from "../pages/index.js";
+import { previewDescriptionModal, previewImageModal } from "../pages/index.js";
 import PopupWithImage from "./PopupWithImage.js";
 
 class Card {
