@@ -59,7 +59,7 @@ function handleCardImageClick({ name, link }) {
 addNewCardButton.addEventListener("click", () => {
   addCardPopupForm.open();
 });
-/*Edit profile Button*/
+/*Edit profile */
 profileEditButton.addEventListener("click", () => {
   profileTitleInput.value = profileTitle.textContent;
   profileDescriptionInput.value = profileDescription.textContent;
@@ -84,38 +84,21 @@ const section = new Section(
 
 section.renderItems();
 
-// User Info
-
-const userInfo = new UserInfo(
-  document.getElementById("profile-title-input"),
-  document.getElementById("profile-description-input")
-);
-/*Event Handlers  submission*/
+// Handlers//
 
 function handleEditProfileSubmit(e) {
   e.preventDefault();
-  const nameInfo = profileTitleInput.value;
-  const jobInfo = profileDescriptionInput.value;
-  userInfo.setUserInfo(nameInfo, jobInfo);
-  close(profileEditModal);
+  profileTitle.textContent = profileTitleInput.value;
+  profileDescription.textContent = profileDescriptionInput.value;
+  editPopupForm.close();
   profileEditForm.reset();
 }
-
-//
-// function handleEditProfileSubmit(e) {
-//   e.preventDefault();
-//   profileTitle.textContent = profileTitleInput.value;
-//   profileDescription.textContent = profileDescriptionInput.value;
-//   close(profileEditModal);
-//   profileEditForm.reset();
-// }
-
 function handleAddCardFormSubmit(e) {
   e.preventDefault();
   const name = cardTitleInput.value;
   const link = cardUrlInput.value;
   renderCard({ name, link }, cardsWrap);
-  close(addCardModal);
+  addCardPopupForm.close();
   profileAddCardForm.reset();
 }
 
