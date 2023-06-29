@@ -1,12 +1,19 @@
-import { previewDescriptionModal, previewImageModal } from "../pages/index.js";
-import PopupWithImage from "./PopupWithImage.js";
+// import PopupWithImage from "./PopupWithImage.js";
 
 class Card {
-  constructor(data, templateSelector, handleCardImageClick) {
+  constructor(
+    data,
+    templateSelector,
+    handleCardImageClick,
+    previewImageModal,
+    previewDescriptionModal
+  ) {
     this._name = data.name;
     this._link = data.link;
     this._templateSelector = templateSelector;
     this._handleCardImageClick = handleCardImageClick;
+    this._previewImageModal = previewImageModal;
+    this._previewDescriptionModal = previewDescriptionModal;
   }
 
   _getTemplate() {
@@ -17,12 +24,9 @@ class Card {
   }
 
   _handleCardImage = () => {
-    previewImageModal.src = this._link;
-    previewImageModal.alt = this._name;
-    previewDescriptionModal.textContent = this._name;
-    const openPreviewModal = new PopupWithImage("#preview-modal");
-
-    openPreviewModal.open({ name: this._name, link: this._link });
+    this._previewImageModal.src = this._link;
+    this._previewImageModal.alt = this._name;
+    this._previewDescriptionModal.textContent = this._name;
     this._handleCardImageClick({ name: this._name, link: this._link });
   };
 
@@ -30,11 +34,13 @@ class Card {
     this._cardElement.remove();
     this._cardElement = null;
   }
+
   _handleLikeButton() {
     this._cardElement
       .querySelector(".card__like-button")
       .classList.toggle("card__like-button_active");
   }
+
   _setEventListeners() {
     this._cardElement
       .querySelector(".card__image")
@@ -50,6 +56,7 @@ class Card {
       .querySelector(".card__like-button")
       .addEventListener("click", () => this._handleLikeButton());
   }
+
   getCardElement() {
     this._cardElement = this._getTemplate();
     this._setEventListeners();
@@ -60,4 +67,5 @@ class Card {
     return this._cardElement;
   }
 }
+
 export default Card;
