@@ -23,13 +23,6 @@ class Card {
       .cloneNode(true);
   }
 
-  _handleCardImage = () => {
-    this._previewImageModal.src = this._link;
-    this._previewImageModal.alt = this._name;
-    this._previewDescriptionModal.textContent = this._name;
-    this._handleCardImageClick({ name: this._name, link: this._link });
-  };
-
   _handleDeleteButton() {
     this._cardElement.remove();
     this._cardElement = null;
@@ -45,7 +38,7 @@ class Card {
     this._cardElement
       .querySelector(".card__image")
       .addEventListener("click", () => {
-        this._handleCardImage();
+        this._handleCardImageClick({ name: this._name, link: this._link });
       });
 
     this._cardElement
