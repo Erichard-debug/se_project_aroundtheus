@@ -57,7 +57,7 @@ function handleCardImageClick({ name, link }) {
 
 // /*Add New card Button*/
 addNewCardButton.addEventListener("click", () => {
-  addFormValidator.toggleButtonState;
+  addFormValidator.toggleButtonState();
   addCardPopupForm.open();
 });
 /*Edit profile */
@@ -65,7 +65,7 @@ profileEditButton.addEventListener("click", () => {
   const { profileName, description } = userInfo.getUserInfo();
   profileTitleInput.value = profileName;
   profileDescriptionInput.value = description;
-  editFormValidator.toggleButtonState;
+  editFormValidator.toggleButtonState();
   editPopupForm.open();
 });
 
@@ -100,14 +100,6 @@ function handleAddCardFormSubmit(inputValues) {
   renderCard({ name, link });
   addCardPopupForm.close();
 }
-
-// function handleAddCardFormSubmit(e) {
-//   e.preventDefault();
-//   const name = cardTitleInput.value;
-//   const link = cardUrlInput.value;
-//   renderCard({ name, link }, cardsWrap);
-//   addCardPopupForm.close();
-// }
 addCardPopupForm.setEventListeners(handleAddCardFormSubmit);
 // Validation
 
