@@ -43,6 +43,7 @@ const editPopupForm = new PopupWithForm(
   "#profile-edit-modal",
   handleEditProfileSubmit
 );
+
 const addCardPopupForm = new PopupWithForm(
   "#add-form-modal",
   handleAddCardFormSubmit
@@ -56,6 +57,7 @@ function handleCardImageClick({ name, link }) {
 
 // /*Add New card Button*/
 addNewCardButton.addEventListener("click", () => {
+  addFormValidator.toggleButtonState;
   addCardPopupForm.open();
 });
 /*Edit profile */
@@ -63,6 +65,7 @@ profileEditButton.addEventListener("click", () => {
   const { profileName, description } = userInfo.getUserInfo();
   profileTitleInput.value = profileName;
   profileDescriptionInput.value = description;
+  editFormValidator.toggleButtonState;
   editPopupForm.open();
 });
 
@@ -90,16 +93,22 @@ function handleEditProfileSubmit(formData) {
   userInfo.setUserInfo(nameInfo, jobInfo);
   editPopupForm.close();
 }
+editPopupForm.setEventListeners(handleEditProfileSubmit);
 
-function handleAddCardFormSubmit(e) {
-  e.preventDefault();
-  const name = cardTitleInput.value;
-  const link = cardUrlInput.value;
-  renderCard({ name, link }, cardsWrap);
+function handleAddCardFormSubmit(inputValues) {
+  const { name, link } = inputValues;
+  renderCard({ name, link });
   addCardPopupForm.close();
-  profileAddCardForm.reset();
 }
 
+// function handleAddCardFormSubmit(e) {
+//   e.preventDefault();
+//   const name = cardTitleInput.value;
+//   const link = cardUrlInput.value;
+//   renderCard({ name, link }, cardsWrap);
+//   addCardPopupForm.close();
+// }
+addCardPopupForm.setEventListeners(handleAddCardFormSubmit);
 // Validation
 
 const addFormValidator = new FormValidator(
