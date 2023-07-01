@@ -28,10 +28,6 @@ const profileDescriptionInput = document.querySelector(
 const profileEditForm = profileEditModal.querySelector(".modal__form");
 const profileAddCardForm = addCardModal.querySelector(".modal__form");
 const cardsWrap = document.querySelector(".cards__list");
-const cardTitleInput = profileAddCardForm.querySelector(
-  ".modal__input_type_title"
-);
-const cardUrlInput = profileAddCardForm.querySelector(".modal__input_type_url");
 
 // popup Elements
 const userInfo = new UserInfo(
