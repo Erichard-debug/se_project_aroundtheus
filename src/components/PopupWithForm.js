@@ -7,6 +7,11 @@ export default class PopupWithForm extends Popup {
     this._popupForm = this._popupElement.querySelector(".modal__form");
   }
 
+  open() {
+    super.open();
+    this._setEventListeners();
+  }
+
   close() {
     this._popupForm.reset();
     super.close();
@@ -29,7 +34,7 @@ export default class PopupWithForm extends Popup {
     this._handleFormSubmit(inputValues);
   };
 
-  setEventListeners() {
+  _setEventListeners() {
     super._setEventListeners();
     this._popupElement.addEventListener("submit", this._submitForm);
   }

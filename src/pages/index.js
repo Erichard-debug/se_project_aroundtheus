@@ -93,14 +93,12 @@ function handleEditProfileSubmit(formData) {
   userInfo.setUserInfo(nameInfo, jobInfo);
   editPopupForm.close();
 }
-editPopupForm.setEventListeners(handleEditProfileSubmit);
 
 function handleAddCardFormSubmit(inputValues) {
   const { name, link } = inputValues;
   renderCard({ name, link });
   addCardPopupForm.close();
 }
-addCardPopupForm.setEventListeners(handleAddCardFormSubmit);
 // Validation
 
 const addFormValidator = new FormValidator(
