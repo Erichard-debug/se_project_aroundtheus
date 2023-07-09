@@ -5,7 +5,7 @@ import PopupWithForm from "../components/PopupWithForm.js";
 import PopupWithImage from "../components/PopupWithImage.js";
 import Section from "../components/Section.js";
 import UserInfo from "../components/UserInfo.js";
-import { initialCards } from "../utils/constants.js";
+import Api from "../components/Api.js";
 
 const formValidatorConfig = {
   inputSelector: ".modal__input",
@@ -28,6 +28,15 @@ const profileDescriptionInput = document.querySelector(
 const profileEditForm = profileEditModal.querySelector(".modal__form");
 const profileAddCardForm = addCardModal.querySelector(".modal__form");
 const cardsWrap = document.querySelector(".cards__list");
+//API and Fetch
+
+const api = new Api({
+  baseUrl: "https://around.nomoreparties.co/v1/cohort-3-en",
+  headers: {
+    authorization: "155496ba-0cff-4254-891f-c46a9649a9e5",
+    "Content-Type": "application/json",
+  },
+});
 
 // popup Elements
 const userInfo = new UserInfo(
@@ -69,20 +78,35 @@ profileEditButton.addEventListener("click", () => {
 /*Cards*/
 function renderCard(cardData) {
   const card = new Card(cardData, "#card-template", handleCardImageClick);
-  section.addItem(card.getCardElement());
+  return card.getCardElement();
+  // section.addItem(card.getCardElement());
 }
+let cardList;
+api
+  .getInitialCards()
+  .then((initialCards) => {
+    cardList = new Section(
+      {
+        items: initialCards,
+        renderer: (data) => {
+          const newCard = renderCard(data);
+          cardList.addItem(newCard);
+        },
+      },
+      cardsWrap
+    );
+    cardList.renderItems();
+  })
+  .catch((err) => console.log(err));
 
-const section = new Section(
-  {
-    items: initialCards,
-    renderer: renderCard,
-  },
-  cardsWrap
-);
-
-section.renderItems();
-
-// Handlers/
+let userId;
+api
+  .getUserInfo()
+  .then((formData) => {
+    userId = formData;
+    userInfo.setUserInfo(formData.nameInfo, formData.jobinfo);
+  })
+  .catch((err) => console.log(err));
 
 function handleEditProfileSubmit(formData) {
   const { nameInfo, jobInfo } = formData;
