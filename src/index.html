@@ -18,11 +18,17 @@
       </header>
       <main class="content">
         <section class="profile page__section">
-          <img
-            src="<%=require('./images/jacques-cousteau.jpg')%>"
-            alt="jacques-cousteau image"
-            class="profile__image"
-          />
+          <button
+            type="button"
+            class="avatar__edit-button"
+            id="avatar-edit-button"
+          >
+            <img
+              src="<%=require('./images/jacques-cousteau.jpg')%>"
+              alt="jacques-cousteau image"
+              class="profile__image"
+            />
+          </button>
           <div class="profile__info">
             <h1 class="profile__title">Jacques-Cousteau</h1>
             <button
@@ -89,7 +95,7 @@
         <form class="modal__form" novalidate>
           <input
             type="url"
-            name="profileLink"
+            name="avatarUrl"
             id="avatar-profile-input"
             class="modal__input"
             placeholder="Image URL"

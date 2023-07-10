@@ -16,7 +16,7 @@ const formValidatorConfig = {
 };
 
 /*Elements*/
-const avatarEditButton = document.querySelector("profile__image");
+const avatarEditButton = document.querySelector("#avatar-edit-button");
 const profileEditButton = document.querySelector("#profile-edit-button");
 const profileEditModal = document.querySelector("#profile-edit-modal");
 const addCardModal = document.querySelector("#add-form-modal");
@@ -42,6 +42,7 @@ const api = new Api({
 
 // popup Elements
 const userInfo = new UserInfo(
+  document.querySelector("profile__image"),
   document.querySelector(".profile__title"),
   document.querySelector(".profile__description")
 );
@@ -58,7 +59,7 @@ const addCardPopupForm = new PopupWithForm(
 
 const avatarProfilePopupForm = new PopupWithForm(
   "#avatar-edit-modal",
-  handleProfileAvatarSubmit
+  handleAvatarFormSubmit
 );
 
 // Image modal event
@@ -116,6 +117,7 @@ api
   .getUserInfo()
   .then((formData) => {
     userId = formData;
+    userInfo.setProfileAvatar(userData.avatar);
     userInfo.changeUserInfo(formData.nameInfo, formData.jobinfo);
   })
   .catch((err) => console.log(err));
@@ -145,10 +147,10 @@ function handleAddCardFormSubmit({ name, link }) {
     });
 }
 
-function handleProfileAvatarSubmit(url) {
+function handleAvatarFormSubmit(avatarUrl) {
   // editAvatarPopup.setLoading(true);
   api
-    .setUsereAvatar(url)
+    .setUsereAvatar(avatarUrl)
     .then((userData) => {
       userInfo.setProfileAvatar(userData.avatar);
       avatarProfilePopupForm.close();
