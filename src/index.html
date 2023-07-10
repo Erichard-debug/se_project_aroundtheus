@@ -81,6 +81,25 @@
         </form>
       </div>
     </div>
+    <!--Avatar Modal-->
+    <div class="modal" id="avatar-edit-modal">
+      <div class="modal__container">
+        <button class="modal__close" id="profile-close-button"></button>
+        <h2 class="modal__heading">Change Profile Picture</h2>
+        <form class="modal__form" novalidate>
+          <input
+            type="url"
+            name="profileLink"
+            id="avatar-profile-input"
+            class="modal__input"
+            placeholder="Image URL"
+            required
+          />
+          <span class="modal__error" id="profile-title-input-error"></span>
+          <button type="submit" class="modal__button">Save</button>
+        </form>
+      </div>
+    </div>
     <!--Add Card Modal-->
     <div class="modal" id="add-form-modal">
       <div class="modal__container">
