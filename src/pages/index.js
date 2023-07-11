@@ -42,7 +42,7 @@ const api = new Api({
 
 // popup Elements
 const userInfo = new UserInfo(
-  document.querySelector("profile__image"),
+  document.querySelector(".profile__image"),
   document.querySelector(".profile__title"),
   document.querySelector(".profile__description")
 );
@@ -84,7 +84,7 @@ profileEditButton.addEventListener("click", () => {
 
 //Avatar Profile change
 avatarEditButton.addEventListener("click", () => {
-  avatarFormValidator.toggleButtonState();
+  // avatarFormValidator.toggleButtonState();
   avatarProfilePopupForm.open();
 });
 
@@ -176,8 +176,8 @@ const editFormValidator = new FormValidator(
 );
 editFormValidator.enableValidation();
 
-const avatarFormValidator = new FormValidator(
-  formValidatorConfig,
-  avatarEditForm
-);
-avatarFormValidator.enableValidation();
+// const avatarFormValidator = new FormValidator(
+//   formValidatorConfig,
+//   avatarEditForm
+// );
+// avatarFormValidator.enableValidation();
