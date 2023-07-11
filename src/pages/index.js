@@ -117,7 +117,7 @@ api
   .getUserInfo()
   .then((formData) => {
     userId = formData;
-    userInfo.setProfileAvatar(userData.avatar);
+    userInfo.setProfileAvatar(formData.avatarUrl);
     userInfo.changeUserInfo(formData.nameInfo, formData.jobinfo);
   })
   .catch((err) => console.log(err));
@@ -151,8 +151,8 @@ function handleAvatarFormSubmit(avatarUrl) {
   // editAvatarPopup.setLoading(true);
   api
     .setUsereAvatar(avatarUrl)
-    .then((userData) => {
-      userInfo.setProfileAvatar(userData.avatar);
+    .then((formData) => {
+      userInfo.setProfileAvatar(formData.avatarUrl);
       avatarProfilePopupForm.close();
     })
     .catch((err) => {
