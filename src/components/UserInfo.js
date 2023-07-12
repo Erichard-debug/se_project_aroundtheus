@@ -1,5 +1,5 @@
 export default class UserInfo {
-  constructor(nameElement, jobElement, avatarElement) {
+  constructor({ nameElement, jobElement, avatarElement }) {
     this._nameElement = nameElement;
     this._jobElement = jobElement;
     this._avatarElement = avatarElement;

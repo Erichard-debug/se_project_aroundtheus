@@ -26,7 +26,7 @@ const profileTitleInput = document.querySelector("#profile-title-input");
 const profileDescriptionInput = document.querySelector(
   "#profile-description-input"
 );
-const avatarEditForm = avatarEditModal.querySelector("#avatar-profile-input");
+const avatarEditForm = avatarEditModal.querySelector(".modal__form");
 const profileEditForm = profileEditModal.querySelector(".modal__form");
 const profileAddCardForm = addCardModal.querySelector(".modal__form");
 const cardsWrap = document.querySelector(".cards__list");
@@ -41,11 +41,11 @@ const api = new Api({
 });
 
 // popup Elements
-const userInfo = new UserInfo(
-  document.querySelector(".profile__image"),
-  document.querySelector(".profile__title"),
-  document.querySelector(".profile__description")
-);
+const userInfo = new UserInfo({
+  avatarElement: document.querySelector(".profile__image"),
+  nameElement: document.querySelector(".profile__title"),
+  jobElement: document.querySelector(".profile__description"),
+});
 const previewImagePopup = new PopupWithImage("#preview-modal");
 const editPopupForm = new PopupWithForm(
   "#profile-edit-modal",
@@ -84,7 +84,7 @@ profileEditButton.addEventListener("click", () => {
 
 //Avatar Profile change
 avatarEditButton.addEventListener("click", () => {
-  // avatarFormValidator.toggleButtonState();
+  avatarFormValidator.toggleButtonState();
   avatarProfilePopupForm.open();
 });
 
@@ -147,20 +147,16 @@ function handleAddCardFormSubmit({ name, link }) {
     });
 }
 
-function handleAvatarFormSubmit(avatarUrl) {
-  // editAvatarPopup.setLoading(true);
+function handleAvatarFormSubmit(data) {
   api
-    .setUsereAvatar(avatarUrl)
+    .changeUserAvatar(data.avatarUrl)
     .then((formData) => {
-      userInfo.setProfileAvatar(formData.avatarUrl);
+      userInfo.setProfileAvatar(formData.avatar);
       avatarProfilePopupForm.close();
     })
     .catch((err) => {
       console.error(err);
     });
-  // .finally(() => {
-  //   avatarProfilePopupForm.setLoading(false, "Save");
-  // });
 }
 // Validation
 
@@ -176,8 +172,8 @@ const editFormValidator = new FormValidator(
 );
 editFormValidator.enableValidation();
 
-// const avatarFormValidator = new FormValidator(
-//   formValidatorConfig,
-//   avatarEditForm
-// );
-// avatarFormValidator.enableValidation();
+const avatarFormValidator = new FormValidator(
+  formValidatorConfig,
+  avatarEditForm
+);
+avatarFormValidator.enableValidation();

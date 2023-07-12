@@ -39,7 +39,7 @@ export default class Api {
       return Promise.reject(`Error: ${res.status}`);
     });
   }
-  setUsereAvatar(avatarLink) {
+  changeUserAvatar(avatarLink) {
     return fetch(this._baseUrl + "/users/me/avatar", {
       method: "PATCH",
       headers: this._headers,

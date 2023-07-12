@@ -29,7 +29,8 @@ export default class PopupWithForm extends Popup {
     return inputsObject;
   }
 
-  _submitForm = () => {
+  _submitForm = (event) => {
+    event.preventDefault();
     const inputValues = this._getInputValues();
     this._handleFormSubmit(inputValues);
   };
