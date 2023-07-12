@@ -70,24 +70,39 @@ export default class Api {
     });
   }
 
-  // deleteCard(cardId) {
-  //   return fetch(`${this._baseUrl}/cards/${cardId}`, {
-  //     method: "DELETE",
-  //     headers: this._headers,
-  //   }).then(this._checkResponse);
-  // }
+  deleteCard(cardId) {
+    return fetch(this._baseUrl + "/cards/" + cardId, {
+      method: "DELETE",
+      headers: this._headers,
+    }).then((res) => {
+      if (res.ok) {
+        return res.json();
+      }
+      return Promise.reject(`Error: ${res.status}`);
+    });
+  }
 
-  // addLike(cardId) {
-  //   return fetch(`${this._baseUrl}/cards/likes/${cardId}`, {
-  //     method: "PUT",
-  //     headers: this._headers,
-  //   }).then(this._checkResponse);
-  // }
+  addLike(cardId) {
+    return fetch(`${this._baseUrl}/cards/likes/${cardId}`, {
+      method: "PUT",
+      headers: this._headers,
+    }).then((res) => {
+      if (res.ok) {
+        return res.json();
+      }
+      return Promise.reject(`Error: ${res.status}`);
+    });
+  }
 
-  // removeLike(cardId) {
-  //   return fetch(`${this._baseUrl}/cards/likes/${cardId}`, {
-  //     method: "DELETE",
-  //     headers: this._headers,
-  //   }).then(this._checkResponse);
-  // }
+  removeLike(cardId) {
+    return fetch(`${this._baseUrl}/cards/likes/${cardId}`, {
+      method: "DELETE",
+      headers: this._headers,
+    }).then((res) => {
+      if (res.ok) {
+        return res.json();
+      }
+      return Promise.reject(`Error: ${res.status}`);
+    });
+  }
 }

@@ -6,7 +6,7 @@ import PopupWithImage from "../components/PopupWithImage.js";
 import Section from "../components/Section.js";
 import UserInfo from "../components/UserInfo.js";
 import Api from "../components/Api.js";
-
+import PopupWithConfirm from "../components/PopupWithConfirm.js";
 const formValidatorConfig = {
   inputSelector: ".modal__input",
   submitButtonSelector: ".modal__button",
@@ -61,6 +61,11 @@ const avatarProfilePopupForm = new PopupWithForm(
   "#avatar-edit-modal",
   handleAvatarFormSubmit
 );
+const deleteCardPopup = new PopupWithConfirm(
+  "#delete-card-modal",
+  handleDeleteCard
+);
+deleteCardPopup.setEventListeners();
 
 // Image modal event
 
@@ -146,7 +151,22 @@ function handleAddCardFormSubmit({ name, link }) {
       console.error(err);
     });
 }
-
+//Delete Card
+function handleDeleteCard(newCard, cardId) {
+  deleteCardPopup.open();
+  deleteCardPopup.setSubmitAction(() => {
+    api
+      .deleteCard(cardId)
+      .then(() => {
+        newCard.deleteCard();
+        deleteCardPopup.close();
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  });
+}
+//Avatar
 function handleAvatarFormSubmit(data) {
   api
     .changeUserAvatar(data.avatarUrl)
