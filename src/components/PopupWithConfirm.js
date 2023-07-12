@@ -8,8 +8,8 @@ export default class PopupWithConfirm extends Popup {
     this._saveButton = document.querySelector(".modal__button");
   }
 
-  setEventListeners() {
-    super.setEventListeners();
+  _setEventListeners() {
+    super._setEventListeners();
     this._popupForm.addEventListener("submit", (e) => {
       e.preventDefault();
       this._handleDeleteSubmit();

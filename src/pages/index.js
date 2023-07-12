@@ -19,6 +19,7 @@ const formValidatorConfig = {
 const avatarEditButton = document.querySelector("#avatar-edit-button");
 const profileEditButton = document.querySelector("#profile-edit-button");
 const profileEditModal = document.querySelector("#profile-edit-modal");
+const deleteCardButton = document.querySelector(".card__delete-button");
 const addCardModal = document.querySelector("#add-form-modal");
 const avatarEditModal = document.querySelector("#avatar-edit-modal");
 const addNewCardButton = document.querySelector("#profile-add-button");
@@ -65,7 +66,6 @@ const deleteCardPopup = new PopupWithConfirm(
   "#delete-card-modal",
   handleDeleteCard
 );
-deleteCardPopup.setEventListeners();
 
 // Image modal event
 
@@ -85,6 +85,10 @@ profileEditButton.addEventListener("click", () => {
   profileDescriptionInput.value = description;
   editFormValidator.toggleButtonState();
   editPopupForm.open();
+});
+
+deleteCardButton.addEventListener("click", () => {
+  deleteCardPopup.open();
 });
 
 //Avatar Profile change
@@ -153,7 +157,6 @@ function handleAddCardFormSubmit({ name, link }) {
 }
 //Delete Card
 function handleDeleteCard(newCard, cardId) {
-  deleteCardPopup.open();
   deleteCardPopup.setSubmitAction(() => {
     api
       .deleteCard(cardId)
