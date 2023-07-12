@@ -19,7 +19,6 @@ const formValidatorConfig = {
 const avatarEditButton = document.querySelector("#avatar-edit-button");
 const profileEditButton = document.querySelector("#profile-edit-button");
 const profileEditModal = document.querySelector("#profile-edit-modal");
-const deleteCardButton = document.querySelector(".card__delete-button");
 const addCardModal = document.querySelector("#add-form-modal");
 const avatarEditModal = document.querySelector("#avatar-edit-modal");
 const addNewCardButton = document.querySelector("#profile-add-button");
@@ -87,10 +86,6 @@ profileEditButton.addEventListener("click", () => {
   editPopupForm.open();
 });
 
-deleteCardButton.addEventListener("click", () => {
-  deleteCardPopup.open();
-});
-
 //Avatar Profile change
 avatarEditButton.addEventListener("click", () => {
   avatarFormValidator.toggleButtonState();
@@ -100,7 +95,13 @@ avatarEditButton.addEventListener("click", () => {
 /*Functions*/
 /*Cards*/
 function renderCard(cardData) {
-  const card = new Card(cardData, "#card-template", handleCardImageClick);
+  const card = new Card(
+    cardData,
+    "#card-template",
+    handleCardImageClick,
+    // owner,
+    handleDeleteCard
+  );
   return card.getCardElement();
 }
 let cardList;
@@ -127,7 +128,7 @@ api
   .then((formData) => {
     userId = formData;
     userInfo.setProfileAvatar(formData.avatarUrl);
-    userInfo.changeUserInfo(formData.nameInfo, formData.jobinfo);
+    userInfo.setUserInfo(formData.nameInfo, formData.jobinfo);
   })
   .catch((err) => console.log(err));
 
@@ -157,6 +158,7 @@ function handleAddCardFormSubmit({ name, link }) {
 }
 //Delete Card
 function handleDeleteCard(newCard, cardId) {
+  deleteCardPopup.open();
   deleteCardPopup.setSubmitAction(() => {
     api
       .deleteCard(cardId)
