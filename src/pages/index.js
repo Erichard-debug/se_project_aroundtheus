@@ -95,13 +95,13 @@ avatarEditButton.addEventListener("click", () => {
 /*Functions*/
 /*Cards*/
 function renderCard(cardData) {
-  const card = new Card(
-    cardData,
-    "#card-template",
+  const card = new Card({
+    data: cardData,
+    templateSelector: "#card-template",
     handleCardImageClick,
-    // owner,
-    handleDeleteCard
-  );
+    myUserId: userId,
+    handleDeleteCard,
+  });
   return card.getCardElement();
 }
 let cardList;
@@ -126,7 +126,7 @@ let userId;
 api
   .getUserInfo()
   .then((formData) => {
-    userId = formData;
+    userId = formData._id;
     userInfo.setProfileAvatar(formData.avatarUrl);
     userInfo.setUserInfo(formData.nameInfo, formData.jobinfo);
   })
@@ -157,17 +157,21 @@ function handleAddCardFormSubmit({ name, link }) {
     });
 }
 //Delete Card
-function handleDeleteCard(newCard, cardId) {
+function handleDeleteCard(cardId) {
   deleteCardPopup.open();
   deleteCardPopup.setSubmitAction(() => {
+    deleteCardPopup.renderLoading(true);
     api
       .deleteCard(cardId)
       .then(() => {
-        newCard.deleteCard();
+        cardId.deleteCard();
         deleteCardPopup.close();
       })
       .catch((err) => {
         console.log(err);
+      })
+      .finally(() => {
+        deleteCardPopup.renderLoading(false);
       });
   });
 }
