@@ -64,11 +64,11 @@ class Card {
     return this._likes.some((like) => like._id === this._currentUserId);
   }
 
-  // _handleLikeButton() {
-  //   this._cardElement
-  //     .querySelector(".card__like-button")
-  //     .classList.toggle("card__like-button_active");
-  // }
+  _handleLikeButton() {
+    this._cardElement
+      .querySelector(".card__like-button")
+      .classList.toggle("card__like-button_active");
+  }
 
   _setEventListeners() {
     this._cardElement

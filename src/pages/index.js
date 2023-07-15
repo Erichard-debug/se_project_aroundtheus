@@ -177,10 +177,10 @@ function handleDeleteCard(cardId) {
   });
 }
 //like Button
-function handleLikeButton(shouldRemoveLike) {
-  if (shouldRemoveLike) {
+function handleLikeButton(cardId) {
+  if (cardId) {
     api
-      .removeLike(data)
+      .removeLike(cardId)
       .then((data) => {
         this.updateLikes(data.likes);
       })
@@ -189,7 +189,7 @@ function handleLikeButton(shouldRemoveLike) {
       });
   } else {
     api
-      .addLike(data)
+      .addLike(cardId)
       .then((data) => {
         this.updateLikes(data.likes);
       })

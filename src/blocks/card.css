@@ -64,6 +64,13 @@
   text-align: center;
   color: #000000;
 }
+.card__like-counter {
+  color: #000;
+  padding: none;
+  margin: 0;
+  font-size: 13px;
+  text-align: center;
+}
 
 .card__number {
   position: relative;
