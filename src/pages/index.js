@@ -101,6 +101,7 @@ function renderCard(cardData) {
     handleCardImageClick,
     myUserId: userId,
     handleDeleteCard,
+    handleLikeButton,
   });
   return card.getCardElement();
 }
@@ -164,7 +165,7 @@ function handleDeleteCard(cardId) {
     api
       .deleteCard(cardId)
       .then(() => {
-        cardId.deleteCard();
+        this.deleteConfirmClick();
         deleteCardPopup.close();
       })
       .catch((err) => {
@@ -174,6 +175,28 @@ function handleDeleteCard(cardId) {
         deleteCardPopup.renderLoading(false);
       });
   });
+}
+//like Button
+function handleLikeButton(shouldRemoveLike) {
+  if (shouldRemoveLike) {
+    api
+      .removeLike(data)
+      .then((data) => {
+        this.updateLikes(data.likes);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  } else {
+    api
+      .addLike(data)
+      .then((data) => {
+        this.updateLikes(data.likes);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
 }
 //Avatar
 function handleAvatarFormSubmit(data) {
