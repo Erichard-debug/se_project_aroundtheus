@@ -101,7 +101,27 @@ function renderCard(cardData) {
     handleCardImageClick,
     myUserId: userId,
     handleDeleteCard,
-    handleLikeButton,
+    handleLikeButton: (cardId) => {
+      if (card.isLiked()) {
+        api
+          .removeLike(cardId)
+          .then((data) => {
+            card.updateLikes(data.likes);
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      } else {
+        api
+          .addLike(cardId)
+          .then((data) => {
+            card.updateLikes(data.likes);
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      }
+    },
   });
   return card.getCardElement();
 }
@@ -128,8 +148,8 @@ api
   .getUserInfo()
   .then((formData) => {
     userId = formData._id;
-    userInfo.setProfileAvatar(formData.avatarUrl);
-    userInfo.setUserInfo(formData.nameInfo, formData.jobinfo);
+    userInfo.setProfileAvatar(formData.avatar);
+    userInfo.setUserInfo(formData.name, formData.about);
   })
   .catch((err) => console.log(err));
 
@@ -176,28 +196,7 @@ function handleDeleteCard(cardId) {
       });
   });
 }
-//like Button
-function handleLikeButton(cardId) {
-  if (cardId) {
-    api
-      .removeLike(cardId)
-      .then((data) => {
-        this.updateLikes(data.likes);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  } else {
-    api
-      .addLike(cardId)
-      .then((data) => {
-        this.updateLikes(data.likes);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }
-}
+
 //Avatar
 function handleAvatarFormSubmit(data) {
   api
