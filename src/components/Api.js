@@ -10,6 +10,10 @@ export default class Api {
     return Promise.reject(`Error ${res.status}`);
   }
 
+  getInfo() {
+    return Promise.all([this.getUserInfo(), this.getInitialCards()]);
+  }
+
   getInitialCards() {
     return fetch(this._baseUrl + "/cards", { headers: this._headers }).then(
       this._checkResponse

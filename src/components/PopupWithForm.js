@@ -5,6 +5,7 @@ export default class PopupWithForm extends Popup {
     super({ popupSelector });
     this._handleFormSubmit = handleFormSubmit;
     this._popupForm = this._popupElement.querySelector(".modal__form");
+    this._saveButton = document.querySelector(".modal__button");
   }
 
   open() {
@@ -16,6 +17,14 @@ export default class PopupWithForm extends Popup {
     this._popupForm.reset();
     super.close();
     this._popupElement.removeEventListener("submit", this._handleFormSubmit);
+  }
+
+  renderLoading(isLoading) {
+    if (isLoading) {
+      this._saveButton.textContent = "Saving...";
+    } else {
+      this._saveButton.textContent = "Save";
+    }
   }
 
   _getInputValues() {

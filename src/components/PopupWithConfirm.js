@@ -5,11 +5,11 @@ export default class PopupWithConfirm extends Popup {
     super({ popupSelector });
     this._popupForm = this._popupElement.querySelector(".modal__form");
     this._confirmButton = document.querySelector("#delete-confirm");
-    this._saveButton = document.querySelector(".modal__button");
   }
 
   _setEventListeners() {
     super._setEventListeners();
+    // not use anonymous handler
     this._popupForm.addEventListener("submit", (e) => {
       e.preventDefault();
       this._handleDeleteSubmit();
@@ -26,4 +26,8 @@ export default class PopupWithConfirm extends Popup {
   setSubmitAction(action) {
     this._handleDeleteSubmit = action;
   }
+
+  // close method
+  // call super
+  // remove the submission listener
 }

@@ -61,10 +61,7 @@ const avatarProfilePopupForm = new PopupWithForm(
   "#avatar-edit-modal",
   handleAvatarFormSubmit
 );
-const deleteCardPopup = new PopupWithConfirm(
-  "#delete-card-modal",
-  handleDeleteCard
-);
+const deleteCardPopup = new PopupWithConfirm("#delete-card-modal", deleteCard);
 
 // Image modal event
 
@@ -100,7 +97,6 @@ function renderCard(cardData) {
     templateSelector: "#card-template",
     handleCardImageClick,
     myUserId: userId,
-    handleDeleteCard,
     handleLikeButton: (cardId) => {
       if (card.isLiked()) {
         api
@@ -122,13 +118,22 @@ function renderCard(cardData) {
           });
       }
     },
+    handleDeleteCard: (cardId) => {
+      deleteCard(card, cardId);
+    },
   });
   return card.getCardElement();
 }
+
 let cardList;
+let userId;
+
 api
-  .getInitialCards()
-  .then((initialCards) => {
+  .getInfo()
+  .then(([formData, initialCards]) => {
+    userId = formData._id;
+    userInfo.setUserInfo(formData.name, formData.about);
+    userInfo.setProfileAvatar(formData.avatar);
     cardList = new Section(
       {
         items: initialCards,
@@ -141,19 +146,12 @@ api
     );
     cardList.renderItems();
   })
-  .catch((err) => console.log(err));
-
-let userId;
-api
-  .getUserInfo()
-  .then((formData) => {
-    userId = formData._id;
-    userInfo.setProfileAvatar(formData.avatar);
-    userInfo.setUserInfo(formData.name, formData.about);
-  })
-  .catch((err) => console.log(err));
+  .catch((err) => {
+    console.log(err);
+  });
 
 function handleEditProfileSubmit({ nameInfo, jobInfo }) {
+  editPopupForm.renderLoading(true);
   api
     .changeUserInfo(nameInfo, jobInfo)
     .then(() => {
@@ -162,10 +160,14 @@ function handleEditProfileSubmit({ nameInfo, jobInfo }) {
     })
     .catch((err) => {
       console.error(err);
+    })
+    .finally(() => {
+      editPopupForm.renderLoading(false);
     });
 }
 
 function handleAddCardFormSubmit({ name, link }) {
+  addCardPopupForm.renderLoading(true);
   api
     .addCard(name, link)
     .then((cardElement) => {
@@ -175,17 +177,20 @@ function handleAddCardFormSubmit({ name, link }) {
     })
     .catch((err) => {
       console.error(err);
+    })
+    .finally(() => {
+      addCardPopupForm.renderLoading(false);
     });
 }
 //Delete Card
-function handleDeleteCard(cardId) {
+function deleteCard(card, cardId) {
   deleteCardPopup.open();
   deleteCardPopup.setSubmitAction(() => {
     deleteCardPopup.renderLoading(true);
     api
       .deleteCard(cardId)
       .then(() => {
-        this.deleteConfirmClick();
+        card.deleteConfirmClick();
         deleteCardPopup.close();
       })
       .catch((err) => {
@@ -199,6 +204,7 @@ function handleDeleteCard(cardId) {
 
 //Avatar
 function handleAvatarFormSubmit(data) {
+  avatarProfilePopupForm.renderLoading(true);
   api
     .changeUserAvatar(data.avatarUrl)
     .then((formData) => {
@@ -207,6 +213,9 @@ function handleAvatarFormSubmit(data) {
     })
     .catch((err) => {
       console.error(err);
+    })
+    .finally(() => {
+      avatarProfilePopupForm.renderLoading(false);
     });
 }
 // Validation
