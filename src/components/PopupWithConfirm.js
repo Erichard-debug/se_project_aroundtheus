@@ -9,11 +9,7 @@ export default class PopupWithConfirm extends Popup {
 
   _setEventListeners() {
     super._setEventListeners();
-    // not use anonymous handler
-    this._popupForm.addEventListener("submit", (e) => {
-      e.preventDefault();
-      this._handleDeleteSubmit();
-    });
+    this._popupForm.addEventListener("submit", this._handleSubmit);
   }
   renderLoading(isLoading) {
     if (isLoading) {
@@ -27,7 +23,12 @@ export default class PopupWithConfirm extends Popup {
     this._handleDeleteSubmit = action;
   }
 
-  // close method
-  // call super
-  // remove the submission listener
+  close() {
+    super.close();
+    this._popupForm.removeEventlistener("submit", this._handleSubmit());
+  }
+  _handleSubmit = (e) => {
+    e.preventDefault();
+    this._handleDeleteSubmit();
+  };
 }

@@ -21,9 +21,9 @@ export default class PopupWithForm extends Popup {
 
   renderLoading(isLoading) {
     if (isLoading) {
-      this._saveButton.textContent = "Saving...";
+      this._popupForm.querySelector(".modal__button").textContent = "Saving...";
     } else {
-      this._saveButton.textContent = "Save";
+      this._popupForm.querySelector(".modal__button").textContent = "Save";
     }
   }
 
