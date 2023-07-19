@@ -18,11 +18,18 @@
       </header>
       <main class="content">
         <section class="profile page__section">
-          <img
-            src="<%=require('./images/jacques-cousteau.jpg')%>"
-            alt="jacques-cousteau image"
-            class="profile__image"
-          />
+          <div class="profile__avatar-container">
+            <img
+              src="<%=require('./images/jacques-cousteau.jpg')%>"
+              alt="jacques-cousteau image"
+              class="profile__image"
+            />
+            <button
+              type="button"
+              class="profile__avatar-button"
+              id="avatar-edit-button"
+            ></button>
+          </div>
           <div class="profile__info">
             <h1 class="profile__title">Jacques-Cousteau</h1>
             <button
@@ -77,7 +84,30 @@
             class="modal__error"
             id="profile-description-input-error"
           ></span>
-          <button type="submit" class="modal__button">Save</button>
+          <button type="submit" class="modal__button" id="edit-profile-save">
+            Save
+          </button>
+        </form>
+      </div>
+    </div>
+    <!--Avatar Modal-->
+    <div class="modal" id="avatar-edit-modal">
+      <div class="modal__container">
+        <button class="modal__close" id="avatar-close-button"></button>
+        <h2 class="modal__heading">Change Profile Picture</h2>
+        <form class="modal__form" novalidate>
+          <input
+            type="url"
+            name="avatarUrl"
+            id="avatar-profile-input"
+            class="modal__input"
+            placeholder="Image URL"
+            required
+          />
+          <span class="modal__error" id="avatar-profile-input-error"></span>
+          <button type="submit" class="modal__button" id="avatar-edit-save">
+            Save
+          </button>
         </form>
       </div>
     </div>
@@ -107,7 +137,21 @@
             required
           />
           <span class="modal__error" id="card-description-input-error"></span>
-          <button type="submit" class="modal__button">Save</button>
+          <button type="submit" class="modal__button" id="add-card-save">
+            Save
+          </button>
+        </form>
+      </div>
+    </div>
+    <!--Delete Card-->
+    <div class="modal" id="delete-card-modal">
+      <div class="modal__container">
+        <button class="modal__close" id="delete-card-close-button"></button>
+        <h2 class="modal__heading">Are you sure?</h2>
+        <form class="modal__form" novalidate>
+          <button type="submit" class="modal__button" id="delete-confirm">
+            Yes
+          </button>
         </form>
       </div>
     </div>
@@ -128,10 +172,9 @@
         <div class="card__description">
           <h2 class="card__title"></h2>
           <button type="button" class="card__like-button"></button>
+          <span class="card__like-amount">0</span>
         </div>
       </li>
     </template>
-
-    <!-- <script src="./pages/index.js" type="module" defer></script> -->
   </body>
 </html>

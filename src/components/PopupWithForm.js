@@ -18,6 +18,14 @@ export default class PopupWithForm extends Popup {
     this._popupElement.removeEventListener("submit", this._handleFormSubmit);
   }
 
+  renderLoading(isLoading) {
+    if (isLoading) {
+      this._popupForm.querySelector(".modal__button").textContent = "Saving...";
+    } else {
+      this._popupForm.querySelector(".modal__button").textContent = "Save";
+    }
+  }
+
   _getInputValues() {
     const inputsObject = {};
     const inputList = this._popupForm.querySelectorAll(".modal__input");
@@ -29,7 +37,8 @@ export default class PopupWithForm extends Popup {
     return inputsObject;
   }
 
-  _submitForm = () => {
+  _submitForm = (event) => {
+    event.preventDefault();
     const inputValues = this._getInputValues();
     this._handleFormSubmit(inputValues);
   };
